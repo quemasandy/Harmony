@@ -246,7 +246,7 @@
 - [ ] T089 [P] Create barrel export for public API in src/harmonic-analysis/index.ts (re-export entities + parseChordSymbol)
 - [ ] T090 Run full test suite (npx vitest run) and verify 100% pass
 - [ ] T091 Run quickstart.md validation: execute the usage example and confirm output matches expected
-- [ ] T092 Verify SC-001: all 189 chord combinations (9 qualities × 21 roots) produce correct results — parametric test or matrix test
+- [ ] T092 Verify SC-001: all 189 chord combinations (9 qualities × 21 roots) produce correct results compared against music21 oracle — parametric test in tests/oracle/chord-matrix.test.ts
 
 ---
 

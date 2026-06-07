@@ -85,8 +85,8 @@ Como músico, quiero recibir un mensaje de error claro cuando ingreso un símbol
 - **FR-002**: El análisis DEBE incluir: nota raíz, lista ordenada de notas del acorde, lista de intervalos desde la raíz, y calidad del acorde.
 - **FR-003**: Las notas del resultado DEBEN deletrearse con la enarmonía musicalmente correcta según la estructura interválica del acorde. El spelling es parte de la semántica del resultado, no un aspecto cosmético.
 - **FR-004**: El sistema DEBE soportar tríadas con los siguientes sufijos canónicos: mayor (`""`), menor (`"m"`), disminuida (`"dim"`), aumentada (`"aug"` o `"+"`).
-- **FR-005**: El sistema DEBE soportar acordes de séptima con los siguientes sufijos canónicos: major seventh (`"maj7"`), dominant seventh (`"7"`), minor seventh (`"m7"`), half-diminished seventh (`"m7b5"`), diminished seventh (`"dim7"`).
-- **FR-011**: El sistema DEBE aceptar exclusivamente los sufijos canónicos listados en FR-004 y FR-005. Cualquier otro sufijo o alias (p.ej. `"min"`, `"-"`, `"M"`, `"Maj"`, `"°"`, `"ø"`) DEBE ser rechazado como símbolo no reconocido. Alias adicionales podrán añadirse en versiones futuras.
+- **FR-005**: El sistema DEBE soportar acordes de séptima con los siguientes sufijos canónicos: major seventh (`"maj7"` o `"M7"`), dominant seventh (`"7"`), minor seventh (`"m7"`), half-diminished seventh (`"m7b5"`), diminished seventh (`"dim7"`).
+- **FR-011**: El sistema DEBE aceptar exclusivamente los sufijos canónicos listados en FR-004 y FR-005. Cualquier otro sufijo o alias (p.ej. `"min"`, `"-"`, `"Maj"`, `"°"`, `"ø"`) DEBE ser rechazado como símbolo no reconocido. Nota: `"M7"` es un sinónimo aceptado de `"maj7"` (ver FR-005) y NO se considera un alias rechazado. Alias adicionales podrán añadirse en versiones futuras.
 - **FR-006**: El sistema DEBE soportar raíces con sostenido (`#`) y bemol (`b`), desde `C` hasta `B` con todas las alteraciones simples.
 - **FR-007**: El sistema DEBE rechazar símbolos de acorde inválidos, malformados o no reconocidos con un mensaje de error claro y sin producir ningún resultado de acorde.
 - **FR-008**: El sistema DEBE rechazar tipos de acorde no soportados en esta versión (novenas, oncenas, trecenas, sus, add, etc.) con un mensaje informativo.
@@ -96,11 +96,11 @@ Como músico, quiero recibir un mensaje de error claro cuando ingreso un símbol
 
 ### Key Entities
 
-- **ChordSymbol**: Representación del símbolo textual de un acorde ingresado por el usuario (p.ej. "Dm7"). Es la entrada al sistema.
-- **ChordAnalysis**: Resultado del análisis estructural. Contiene: nota raíz, lista de notas con deletreo enarmónico correcto, intervalos desde la raíz, y calidad del acorde.
-- **Note / PitchClass**: Representación de una nota musical con su nombre y alteración, que respeta las reglas de enarmonía.
-- **Interval**: Representación de la distancia interválica entre dos notas (p.ej. "major 3rd", "diminished 5th").
-- **ChordQuality**: Clasificación de la calidad del acorde (major, minor, diminished, augmented, major seventh, dominant seventh, minor seventh, half-diminished seventh, diminished seventh).
+- **Chord**: Value Object que representa un acorde analizado. Contiene: nota raíz (`root`), lista de notas con deletreo enarmónico correcto (`notes`), intervalos desde la raíz (`intervals`), y calidad del acorde (`quality`). Se construye a partir de una raíz + calidad; sus notas se derivan por aplicación de intervalos.
+- **Note / PitchClass**: Representación de una nota musical con su nombre (letra) y alteración, que respeta las reglas de enarmonía. `PitchClass` (0–11) se deriva de `Note` cuando se necesite.
+- **Interval**: Representación de la distancia interválica entre dos notas (p.ej. "major 3rd", "diminished 5th"). Sabe aplicarse a una nota raíz para producir la nota resultante con deletreo correcto.
+- **ChordQuality**: Clasificación de la calidad del acorde (major, minor, diminished, augmented, major-seventh, dominant-seventh, minor-seventh, half-diminished-seventh, diminished-seventh).
+- **ChordSymbolParser**: Adaptador que convierte un símbolo textual (p.ej. "Dm7") en un `Chord`. Vive en la capa de adaptadores, no en el dominio.
 
 ## Success Criteria *(mandatory)*
 

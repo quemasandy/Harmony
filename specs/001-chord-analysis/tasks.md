@@ -136,18 +136,18 @@
 
 ### Tests for ChordSymbolParser — séptimas (TDD: write first, must FAIL) 🔴
 
-- [ ] T048 [P] [US1] Test parseChordSymbol("Cmaj7") → root C, quality major-seventh, notes [C,E,G,B] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T049 [P] [US1] Test parseChordSymbol("CM7") → root C, quality major-seventh, notes [C,E,G,B] (M7 synonym) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T050 [P] [US1] Test parseChordSymbol("Dm7") → root D, quality minor-seventh, notes [D,F,A,C] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T051 [P] [US1] Test parseChordSymbol("G7") → root G, quality dominant-seventh, notes [G,B,D,F] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T052 [P] [US1] Test parseChordSymbol("F#m7b5") → root F#, quality half-diminished-seventh, notes [F#,A,C,E] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T053 [P] [US1] Test parseChordSymbol("Bdim7") → root B, quality diminished-seventh, notes [B,D,F,Ab] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T054 [P] [US1] Test parseChordSymbol with sharped/flatted roots: "Ebm7" → [Eb,Gb,Bb,Db], "Abmaj7" → [Ab,C,Eb,G] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T055 [P] [US1] Test parseChordSymbol trims whitespace: " Dm7 " → same result as "Dm7" in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T048 [P] [US1] Test parseChordSymbol("Cmaj7") → root C, quality major-seventh, notes [C,E,G,B] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T049 [P] [US1] Test parseChordSymbol("CM7") → root C, quality major-seventh, notes [C,E,G,B] (M7 synonym) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T050 [P] [US1] Test parseChordSymbol("Dm7") → root D, quality minor-seventh, notes [D,F,A,C] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T051 [P] [US1] Test parseChordSymbol("G7") → root G, quality dominant-seventh, notes [G,B,D,F] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T052 [P] [US1] Test parseChordSymbol("F#m7b5") → root F#, quality half-diminished-seventh, notes [F#,A,C,E] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T053 [P] [US1] Test parseChordSymbol("Bdim7") → root B, quality diminished-seventh, notes [B,D,F,Ab] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T054 [P] [US1] Test parseChordSymbol with sharped/flatted roots: "Ebm7" → [Eb,Gb,Bb,Db], "Abmaj7" → [Ab,C,Eb,G] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T055 [P] [US1] Test parseChordSymbol trims whitespace: " Dm7 " → same result as "Dm7" in tests/unit/adapters/ChordSymbolParser.test.ts
 
 ### Implementation for User Story 1 🟢
 
-- [ ] T056 [US1] Implement parseChordSymbol function (trim → extract root letter+accidental → match suffix to quality → construct Chord) in src/harmonic-analysis/adapters/ChordSymbolParser.ts
+- [x] T056 [US1] Implement parseChordSymbol function (trim → extract root letter+accidental → match suffix to quality → construct Chord) in src/harmonic-analysis/adapters/ChordSymbolParser.ts
 
 **Checkpoint**: Seventh chord analysis working end-to-end. Parser → Chord construction → correct spelling verified.
 
@@ -161,16 +161,16 @@
 
 ### Tests for ChordSymbolParser — tríadas (TDD: write first, must FAIL) 🔴
 
-- [ ] T057 [P] [US2] Test parseChordSymbol("C") → root C, quality major, notes [C,E,G] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T058 [P] [US2] Test parseChordSymbol("Dm") → root D, quality minor, notes [D,F,A] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T059 [P] [US2] Test parseChordSymbol("Bdim") → root B, quality diminished, notes [B,D,F] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T060 [P] [US2] Test parseChordSymbol("Caug") → root C, quality augmented, notes [C,E,G#] in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T061 [P] [US2] Test parseChordSymbol("C+") → root C, quality augmented, notes [C,E,G#] (synonym for aug) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T062 [P] [US2] Test parseChordSymbol with sharped/flatted triad roots: "F#", "Bb", "Ebm" in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T057 [P] [US2] Test parseChordSymbol("C") → root C, quality major, notes [C,E,G] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T058 [P] [US2] Test parseChordSymbol("Dm") → root D, quality minor, notes [D,F,A] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T059 [P] [US2] Test parseChordSymbol("Bdim") → root B, quality diminished, notes [B,D,F] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T060 [P] [US2] Test parseChordSymbol("Caug") → root C, quality augmented, notes [C,E,G#] in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T061 [P] [US2] Test parseChordSymbol("C+") → root C, quality augmented, notes [C,E,G#] (synonym for aug) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T062 [P] [US2] Test parseChordSymbol with sharped/flatted triad roots: "F#", "Bb", "Ebm" in tests/unit/adapters/ChordSymbolParser.test.ts
 
 ### Implementation for User Story 2 🟢
 
-- [ ] T063 [US2] Extend suffix table in parseChordSymbol to handle triad suffixes ("", "m", "dim", "aug", "+") if not already covered in T056 — in src/harmonic-analysis/adapters/ChordSymbolParser.ts
+- [x] T063 [US2] Extend suffix table in parseChordSymbol to handle triad suffixes ("", "m", "dim", "aug", "+") if not already covered in T056 — in src/harmonic-analysis/adapters/ChordSymbolParser.ts
 
 **Checkpoint**: All 9 chord qualities parseable. Triads and sevenths both working.
 
@@ -184,24 +184,24 @@
 
 ### Tests for ChordSymbolParser — error cases (TDD: write first, must FAIL) 🔴
 
-- [ ] T064 [P] [US3] Test parseChordSymbol("XYZ") throws InvalidChordSymbolError (invalid root letter) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T065 [P] [US3] Test parseChordSymbol("") throws InvalidChordSymbolError (empty string) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T066 [P] [US3] Test parseChordSymbol("Hm7") throws InvalidChordSymbolError (H not valid in Anglo-Saxon notation) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T067 [P] [US3] Test parseChordSymbol("cmaj7") throws InvalidChordSymbolError (lowercase root, FR-012) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T068 [P] [US3] Test parseChordSymbol("dM7") throws InvalidChordSymbolError (lowercase root, FR-012) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T069 [P] [US3] Test parseChordSymbol("Cmin") throws InvalidChordSymbolError (non-canonical suffix, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T070 [P] [US3] Test parseChordSymbol("C-") throws InvalidChordSymbolError (non-canonical suffix, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T071 [P] [US3] Test parseChordSymbol("C9") throws InvalidChordSymbolError (unsupported extension, FR-008) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T072 [P] [US3] Test parseChordSymbol("Dm11") throws InvalidChordSymbolError (unsupported extension, FR-008) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T073 [P] [US3] Test parseChordSymbol("G13") throws InvalidChordSymbolError (unsupported extension, FR-008) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T074 [P] [US3] Test parseChordSymbol("Fbb") throws InvalidChordSymbolError (double flat root, out of scope) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T075 [P] [US3] Test parseChordSymbol("C°") throws InvalidChordSymbolError (non-canonical symbol, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T076 [P] [US3] Test parseChordSymbol("Cø7") throws InvalidChordSymbolError (non-canonical symbol, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
-- [ ] T077 [P] [US3] Test error messages are descriptive and mention the invalid symbol in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T064 [P] [US3] Test parseChordSymbol("XYZ") throws InvalidChordSymbolError (invalid root letter) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T065 [P] [US3] Test parseChordSymbol("") throws InvalidChordSymbolError (empty string) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T066 [P] [US3] Test parseChordSymbol("Hm7") throws InvalidChordSymbolError (H not valid in Anglo-Saxon notation) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T067 [P] [US3] Test parseChordSymbol("cmaj7") throws InvalidChordSymbolError (lowercase root, FR-012) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T068 [P] [US3] Test parseChordSymbol("dM7") throws InvalidChordSymbolError (lowercase root, FR-012) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T069 [P] [US3] Test parseChordSymbol("Cmin") throws InvalidChordSymbolError (non-canonical suffix, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T070 [P] [US3] Test parseChordSymbol("C-") throws InvalidChordSymbolError (non-canonical suffix, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T071 [P] [US3] Test parseChordSymbol("C9") throws InvalidChordSymbolError (unsupported extension, FR-008) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T072 [P] [US3] Test parseChordSymbol("Dm11") throws InvalidChordSymbolError (unsupported extension, FR-008) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T073 [P] [US3] Test parseChordSymbol("G13") throws InvalidChordSymbolError (unsupported extension, FR-008) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T074 [P] [US3] Test parseChordSymbol("Fbb") throws InvalidChordSymbolError (double flat root, out of scope) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T075 [P] [US3] Test parseChordSymbol("C°") throws InvalidChordSymbolError (non-canonical symbol, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T076 [P] [US3] Test parseChordSymbol("Cø7") throws InvalidChordSymbolError (non-canonical symbol, FR-011) in tests/unit/adapters/ChordSymbolParser.test.ts
+- [x] T077 [P] [US3] Test error messages are descriptive and mention the invalid symbol in tests/unit/adapters/ChordSymbolParser.test.ts
 
 ### Implementation for User Story 3 🟢
 
-- [ ] T078 [US3] Add validation and descriptive error messages for all rejection cases in src/harmonic-analysis/adapters/ChordSymbolParser.ts — verify no partial Chord is ever returned on invalid input
+- [x] T078 [US3] Add validation and descriptive error messages for all rejection cases in src/harmonic-analysis/adapters/ChordSymbolParser.ts — verify no partial Chord is ever returned on invalid input
 
 **Checkpoint**: All invalid inputs rejected with clear errors. No silent failures.
 
@@ -211,13 +211,13 @@
 
 **Purpose**: Verify domain correctness against the authoritative music21 oracle (Principio VIII).
 
-### Oracle Tests 🔴🟢
+### Tests for Validation Oracle (Phase 8) 🔴🟢
 
-- [ ] T079 [P] Test oracle script runs: invoke music21-oracle.py with "Cmaj7" and verify JSON output structure in tests/oracle/chord-oracle.test.ts
-- [ ] T080 Test all 5 seventh chord acceptance scenarios from spec against music21 oracle (Cmaj7, Dm7, G7, F#m7b5, Bdim7) in tests/oracle/chord-oracle.test.ts
-- [ ] T081 Test all 4 triad acceptance scenarios from spec against music21 oracle (C, Dm, Bdim, Caug) in tests/oracle/chord-oracle.test.ts
-- [ ] T082 Test sharped/flatted root chords against music21 oracle (Ebm7, Abmaj7, F#, Bb) in tests/oracle/chord-oracle.test.ts
-- [ ] T083 Test enharmonic spelling matches music21 exactly (Bdim7 → Ab not G#; Ebm7 → Gb not F#) in tests/oracle/chord-oracle.test.ts
+- [x] T079 [Oracle] Verify tests/oracle/music21-oracle.py exists and is executable.
+- [x] T080 [Oracle] Verify python virtual environment has `music21` installed (pip install music21).
+- [x] T081 [Oracle] Write tests/oracle/ChordOracle.test.ts that spawns the python script for a set of varied chords (triads and sevenths) and compares music21's output with our Domain model's output (notes and intervals must match).
+- [x] T082 Test sharped/flatted root chords against music21 oracle (Ebm7, Abmaj7, F#, Bb) in tests/oracle/chord-oracle.test.ts
+- [x] T083 Test enharmonic spelling matches music21 exactly (Bdim7 → Ab not G#; Ebm7 → Gb not F#) in tests/oracle/chord-oracle.test.ts
 
 **Checkpoint**: Domain produces identical results to music21 for all supported chord types.
 

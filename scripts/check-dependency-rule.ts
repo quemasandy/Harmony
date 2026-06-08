@@ -16,6 +16,7 @@ function checkDirectory(dir: string): boolean {
       const lines = content.split('\n');
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
+        if (!line) continue;
         // Enforce that entities cannot import from adapters or use-cases
         if (line.match(/from\s+['"](?:\.\.\/)+adapters/) || line.match(/from\s+['"](?:\.\.\/)+use-cases/)) {
           console.error(`❌ Dependency rule violation in ${fullPath}:${i+1}`);

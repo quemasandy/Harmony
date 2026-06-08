@@ -9,7 +9,8 @@
     "test:oracle": "vitest run tests/oracle",
     "test:arch": "vitest run tests/architecture",
     "typecheck": "tsc --noEmit",
-    "check-deps": "npx ts-node scripts/check-dependency-rule.ts"
+    "check-deps": "npx ts-node scripts/check-dependency-rule.ts",
+    "validate": "npm run typecheck && npm run check-deps && npm run test"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

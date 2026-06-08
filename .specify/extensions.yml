@@ -116,6 +116,13 @@ hooks:
     description: Auto-commit after task generation
     condition: null
   after_implement:
+  - extension: custom
+    command: speckit.validate
+    enabled: true
+    optional: false
+    prompt: Run tests and validations?
+    description: Validate the project using npm run validate
+    condition: null
   - extension: git
     command: speckit.git.commit
     enabled: true

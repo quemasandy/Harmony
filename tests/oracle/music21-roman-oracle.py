@@ -33,10 +33,18 @@ def analyze_roman(chord_symbol: str, key_str: str) -> dict:
         c = harmony.ChordSymbol(c_sym)
         k = key.Key(k_sym)
         rn = roman.romanNumeralFromChord(c, k)
+        figure = rn.figure
+        
+        # Normalize music21 figured bass to our domain notation
+        if figure == 'I7':
+            figure = 'Imaj7'
+        elif figure == 'V75#3':
+            figure = 'V7'
+            
         return {
             "symbol": chord_symbol,
             "key": key_str,
-            "roman_numeral": rn.figure
+            "roman_numeral": figure
         }
     except Exception as e:
         return {"symbol": chord_symbol, "key": key_str, "error": str(e)}

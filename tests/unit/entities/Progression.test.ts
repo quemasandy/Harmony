@@ -16,8 +16,8 @@ describe('Progression', () => {
     const progression = new Progression([dm7, g7, cmaj7], key);
     const analysis = progression.analyze();
 
-    expect(analysis.romanNumerals.map(rn => rn.symbol)).toEqual(['ii7', 'V7', 'Imaj7']);
-    expect(analysis.romanNumerals.every(rn => rn.isDiatonic)).toBe(true);
+    expect(analysis.chordAnalysis.filter(a => a.diatonic).map(a => (a as any).romanNumeral.symbol)).toEqual(['ii7', 'V7', 'Imaj7']);
+    expect(analysis.chordAnalysis.every(a => a.diatonic)).toBe(true);
     expect(analysis.iiVIMajorPatterns).toEqual([{ startIndex: 0 }]);
     expect(analysis.iiVIMinorPatterns).toEqual([]);
   });
@@ -32,8 +32,8 @@ describe('Progression', () => {
     const progression = new Progression([dHalfDim, g7, cm], key);
     const analysis = progression.analyze();
 
-    expect(analysis.romanNumerals.map(rn => rn.symbol)).toEqual(['iiø7', 'V7', 'i']);
-    expect(analysis.romanNumerals.every(rn => rn.isDiatonic)).toBe(true);
+    expect(analysis.chordAnalysis.filter(a => a.diatonic).map(a => (a as any).romanNumeral.symbol)).toEqual(['iiø7', 'V7', 'i']);
+    expect(analysis.chordAnalysis.every(a => a.diatonic)).toBe(true);
     expect(analysis.iiVIMinorPatterns).toEqual([{ startIndex: 0 }]);
   });
 
@@ -46,9 +46,8 @@ describe('Progression', () => {
     const progression = new Progression([cmaj7, abmaj7], key);
     const analysis = progression.analyze();
 
-    expect(analysis.romanNumerals[0]!.symbol).toBe('Imaj7');
-    expect(analysis.romanNumerals[1]!.symbol).toBe('non-diatonic');
-    expect(analysis.romanNumerals[1]!.isDiatonic).toBe(false);
+    expect((analysis.chordAnalysis[0] as any).romanNumeral.symbol).toBe('Imaj7');
+    expect(analysis.chordAnalysis[1]!.diatonic).toBe(false);
   });
 
   it('detects overlapping patterns', () => {

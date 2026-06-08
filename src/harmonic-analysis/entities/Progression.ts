@@ -5,9 +5,13 @@ import { Note } from './Note';
 import { InvalidProgressionError } from './errors';
 import { ChordQualityName } from './ChordQuality';
 
+export type ChordAnalysisResult = 
+  | { diatonic: true, romanNumeral: RomanNumeral }
+  | { diatonic: false };
+
 export interface HarmonicAnalysis {
   readonly chords: readonly Chord[];
-  readonly romanNumerals: readonly RomanNumeral[];
+  readonly chordAnalysis: readonly ChordAnalysisResult[];
   readonly iiVIMajorPatterns: readonly { startIndex: number }[];
   readonly iiVIMinorPatterns: readonly { startIndex: number }[];
 }
@@ -27,39 +31,45 @@ export class Progression {
 
   analyze(): HarmonicAnalysis {
     const scaleNotes = this.key.getScaleNotes();
-    const romanNumerals = this.chords.map(chord => this.analyzeChord(chord, scaleNotes));
+    const chordAnalysis = this.chords.map(chord => this.analyzeChord(chord, scaleNotes));
     
     const iiVIMajorPatterns: { startIndex: number }[] = [];
     const iiVIMinorPatterns: { startIndex: number }[] = [];
 
     // Sliding window of size 3
-    for (let i = 0; i <= romanNumerals.length - 3; i++) {
-      const rn1 = romanNumerals[i]!;
-      const rn2 = romanNumerals[i+1]!;
-      const rn3 = romanNumerals[i+2]!;
+    for (let i = 0; i <= chordAnalysis.length - 3; i++) {
+      const a1 = chordAnalysis[i]!;
+      const a2 = chordAnalysis[i+1]!;
+      const a3 = chordAnalysis[i+2]!;
 
-      if ((rn1.symbol === 'ii7' || rn1.symbol === 'ii') && rn2.symbol === 'V7' && (rn3.symbol === 'Imaj7' || rn3.symbol === 'I')) {
-        iiVIMajorPatterns.push({ startIndex: i });
-      }
+      if (a1.diatonic && a2.diatonic && a3.diatonic) {
+        const rn1 = a1.romanNumeral;
+        const rn2 = a2.romanNumeral;
+        const rn3 = a3.romanNumeral;
 
-      if ((rn1.symbol === 'iiø7' || rn1.symbol === 'ii°') && rn2.symbol === 'V7' && (rn3.symbol === 'i' || rn3.symbol === 'i7')) {
-        iiVIMinorPatterns.push({ startIndex: i });
+        if ((rn1.symbol === 'ii7' || rn1.symbol === 'ii') && rn2.symbol === 'V7' && (rn3.symbol === 'Imaj7' || rn3.symbol === 'I')) {
+          iiVIMajorPatterns.push({ startIndex: i });
+        }
+
+        if ((rn1.symbol === 'iiø7' || rn1.symbol === 'ii°') && rn2.symbol === 'V7' && (rn3.symbol === 'i' || rn3.symbol === 'i7')) {
+          iiVIMinorPatterns.push({ startIndex: i });
+        }
       }
     }
 
     return Object.freeze({
       chords: this.chords,
-      romanNumerals: Object.freeze(romanNumerals),
+      chordAnalysis: Object.freeze(chordAnalysis),
       iiVIMajorPatterns: Object.freeze(iiVIMajorPatterns),
       iiVIMinorPatterns: Object.freeze(iiVIMinorPatterns)
     });
   }
 
-  private analyzeChord(chord: Chord, scaleNotes: Note[]): RomanNumeral {
+  private analyzeChord(chord: Chord, scaleNotes: Note[]): ChordAnalysisResult {
     const isDiatonic = chord.notes.every(cn => scaleNotes.some(sn => sn.equals(cn)));
     
     if (!isDiatonic) {
-      return new RomanNumeral('non-diatonic', 1, false);
+      return { diatonic: false };
     }
 
     const letters = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
@@ -88,6 +98,6 @@ export class Progression {
     };
 
     const symbol = `${base}${QUALITY_SUFFIX[chord.quality]}`;
-    return new RomanNumeral(symbol, degree, true);
+    return { diatonic: true, romanNumeral: new RomanNumeral(symbol, degree, true) };
   }
 }

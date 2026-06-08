@@ -10,7 +10,7 @@ const ORACLE_SCRIPT = join(__dirname, 'music21-roman-oracle.py');
 
 function runOracle(key: string, chords: string[]): { symbol: string, key: string, roman_numeral?: string, error?: string }[] {
   try {
-    const output = execFileSync('python3', [ORACLE_SCRIPT, key, ...chords], { encoding: 'utf-8' });
+    const output = execFileSync('python3', [ORACLE_SCRIPT, key, ...chords], { encoding: 'utf-8', env: { ...process.env, PATH: `${join(__dirname, '../../../.venv/bin')}:${process.env.PATH}` } });
     return output.trim().split('\n').filter(l => l).map(line => JSON.parse(line));
   } catch (error: any) {
     console.warn('Oracle script failed, perhaps music21 is not installed or python3 is missing.', error.message);
@@ -36,9 +36,9 @@ describe('Progression Oracle Tests', () => {
     const progression = new Progression(chords, key);
     const analysis = progression.analyze();
 
-    expect(analysis.romanNumerals[0]!.symbol).toBe(oracleResults[0]!.roman_numeral);
-    expect(analysis.romanNumerals[1]!.symbol).toBe(oracleResults[1]!.roman_numeral);
-    expect(analysis.romanNumerals[2]!.symbol).toBe(oracleResults[2]!.roman_numeral);
+    expect((analysis.chordAnalysis[0] as any).romanNumeral.symbol).toBe(oracleResults[0]!.roman_numeral);
+    expect((analysis.chordAnalysis[1] as any).romanNumeral.symbol).toBe(oracleResults[1]!.roman_numeral);
+    expect((analysis.chordAnalysis[2] as any).romanNumeral.symbol).toBe(oracleResults[2]!.roman_numeral);
   });
 
   it('validates Minor ii-V-i roman numerals against music21', () => {
@@ -58,8 +58,8 @@ describe('Progression Oracle Tests', () => {
     const progression = new Progression(chords, key);
     const analysis = progression.analyze();
 
-    expect(analysis.romanNumerals[0]!.symbol).toBe(oracleResults[0]!.roman_numeral);
-    expect(analysis.romanNumerals[1]!.symbol).toBe(oracleResults[1]!.roman_numeral);
-    expect(analysis.romanNumerals[2]!.symbol).toBe(oracleResults[2]!.roman_numeral);
+    expect((analysis.chordAnalysis[0] as any).romanNumeral.symbol).toBe(oracleResults[0]!.roman_numeral);
+    expect((analysis.chordAnalysis[1] as any).romanNumeral.symbol).toBe(oracleResults[1]!.roman_numeral);
+    expect((analysis.chordAnalysis[2] as any).romanNumeral.symbol).toBe(oracleResults[2]!.roman_numeral);
   });
 });

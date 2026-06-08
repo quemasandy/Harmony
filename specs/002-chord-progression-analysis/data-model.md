@@ -19,7 +19,7 @@
 ### `HarmonicAnalysis` (Value Object / DTO)
 - **Fields**:
   - `readonly chords: readonly Chord[]`
-  - `readonly romanNumerals: readonly RomanNumeral[]`
+  - `readonly chordAnalysis: readonly ({ diatonic: true, romanNumeral: RomanNumeral } | { diatonic: false })[]`
   - `readonly iiVIMajorPatterns: readonly { startIndex: number }[]`
   - `readonly iiVIMinorPatterns: readonly { startIndex: number }[]`
 

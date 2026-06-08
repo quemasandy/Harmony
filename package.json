@@ -1,0 +1,19 @@
+{
+  "name": "harmonic-analysis",
+  "version": "1.0.0",
+  "description": "Harmonic Analysis Engine",
+  "main": "src/harmonic-analysis/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:oracle": "vitest run tests/oracle",
+    "test:arch": "vitest run tests/architecture",
+    "typecheck": "tsc --noEmit",
+    "check-deps": "npx ts-node scripts/check-dependency-rule.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

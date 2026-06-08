@@ -19,8 +19,8 @@ export class Interval {
     }
     this.symbol = symbol;
     
-    const q = symbol[0];
-    const n = parseInt(symbol[1], 10) as IntervalNumber;
+    const q = symbol[0]!;
+    const n = parseInt(symbol[1]!, 10) as IntervalNumber;
     
     this.number = n;
     switch(q) {
@@ -44,7 +44,7 @@ export class Interval {
       'P4': 5, 'd5': 6, 'P5': 7, 'A5': 8,
       'm6': 8, 'M6': 9, 'm7': 10, 'M7': 11, 'd7': 9
     };
-    return semitoneMap[this.symbol];
+    return semitoneMap[this.symbol]!;
   }
 
   toString(): string {
@@ -55,11 +55,11 @@ export class Interval {
     const letters: Letter[] = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
     const rootIndex = letters.indexOf(root.letter);
     const targetLetterIndex = (rootIndex + this.number - 1) % 7;
-    const targetLetter = letters[targetLetterIndex];
+    const targetLetter = letters[targetLetterIndex]!;
 
     const targetSemitones = (root.semitonesFromC() + this.semitones()) % 12;
     
-    const naturalNote = new Note(targetLetter);
+    const naturalNote = new Note(targetLetter!);
     let naturalSemitones = naturalNote.semitonesFromC();
     
     let diff = (targetSemitones - naturalSemitones) % 12;
@@ -74,6 +74,6 @@ export class Interval {
     else if (diff === -2) accidental = 'bb';
     else throw new InvalidIntervalError(`Interval application produced an unsupported accidental (diff=${diff}): root ${root.toString()} + ${this.symbol} for letter ${targetLetter}`);
 
-    return new Note(targetLetter, accidental);
+    return new Note(targetLetter!, accidental);
   }
 }

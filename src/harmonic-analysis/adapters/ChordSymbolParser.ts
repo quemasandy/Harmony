@@ -15,7 +15,9 @@ export function parseChordSymbol(symbol: string): Chord {
     throw new InvalidChordSymbolError(`Invalid root or format in symbol: "${trimmed}". Root must be A-G.`);
   }
 
-  const [, letter, accidental, suffix] = match;
+  const letter = match[1]!;
+  const accidental = match[2]!;
+  const suffix = match[3]!;
 
   // Validate suffix (FR-011) and map to ChordQualityName
   let quality: ChordQualityName;

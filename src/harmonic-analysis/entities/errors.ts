@@ -25,3 +25,24 @@ export class InvalidChordSymbolError extends HarmonyError {
     this.name = 'InvalidChordSymbolError';
   }
 }
+
+export class InvalidKeyError extends HarmonyError {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidKeyError';
+  }
+}
+
+export class InvalidProgressionError extends HarmonyError {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidProgressionError';
+  }
+}
+
+export class InvalidRomanNumeralError extends HarmonyError {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidRomanNumeralError';
+  }
+}

@@ -20,12 +20,12 @@
 
 **Purpose**: Project initialization, TypeScript strict config, test runner, folder structure.
 
-- [ ] T001 Initialize npm project and install devDependencies (typescript, vitest) in package.json
-- [ ] T002 Configure TypeScript strict mode (strict: true, noUncheckedIndexedAccess: true, exactOptionalPropertyTypes: true) in tsconfig.json
-- [ ] T003 Configure Vitest in vitest.config.ts
-- [ ] T004 Create directory structure per plan: src/harmonic-analysis/{entities,use-cases,adapters}/, tests/{unit/entities,unit/adapters,oracle,architecture}/
-- [ ] T005 Create base error classes (HarmonyError, InvalidNoteError, InvalidIntervalError, InvalidChordSymbolError) in src/harmonic-analysis/entities/errors.ts
-- [ ] T006 Create music21 oracle script in tests/oracle/music21-oracle.py — accepts chord symbol as argument, outputs JSON with root, notes, intervals, quality
+- [x] T001 Initialize npm project and install devDependencies (typescript, vitest) in package.json
+- [x] T002 Configure TypeScript strict mode (strict: true, noUncheckedIndexedAccess: true, exactOptionalPropertyTypes: true) in tsconfig.json
+- [x] T003 Configure Vitest in vitest.config.ts
+- [x] T004 Create directory structure per plan: src/harmonic-analysis/{entities,use-cases,adapters}/, tests/{unit/entities,unit/adapters,oracle,architecture}/
+- [x] T005 Create base error classes (HarmonyError, InvalidNoteError, InvalidIntervalError, InvalidChordSymbolError) in src/harmonic-analysis/entities/errors.ts
+- [x] T006 Create music21 oracle script in tests/oracle/music21-oracle.py — accepts chord symbol as argument, outputs JSON with root, notes, intervals, quality
 
 ---
 
@@ -37,28 +37,28 @@
 
 ### Tests for Note (TDD: write first, must FAIL) 🔴
 
-- [ ] T007 [P] Test Note creation with valid inputs (all 21 root combinations: 7 letters × 3 accidentals) in tests/unit/entities/Note.test.ts
-- [ ] T008 [P] Test Note rejects invalid inputs (invalid letter, invalid accidental) throwing InvalidNoteError in tests/unit/entities/Note.test.ts
-- [ ] T009 [P] Test Note immutability (attempting to mutate readonly fields throws error, Object.freeze verified) in tests/unit/entities/Note.test.ts
-- [ ] T010 [P] Test Note equality by value (same letter+accidental → equals true; different → equals false) in tests/unit/entities/Note.test.ts
-- [ ] T011 [P] Test Note.toString() returns correct display string ("C", "F#", "Bb") in tests/unit/entities/Note.test.ts
-- [ ] T012 [P] Test Note.semitonesFromC() returns correct semitone distance for all 21 notes in tests/unit/entities/Note.test.ts
+- [x] T007 [P] Test Note creation with valid inputs (all 21 root combinations: 7 letters × 3 accidentals) in tests/unit/entities/Note.test.ts
+- [x] T008 [P] Test Note rejects invalid inputs (invalid letter, invalid accidental) throwing InvalidNoteError in tests/unit/entities/Note.test.ts
+- [x] T009 [P] Test Note immutability (attempting to mutate readonly fields throws error, Object.freeze verified) in tests/unit/entities/Note.test.ts
+- [x] T010 [P] Test Note equality by value (same letter+accidental → equals true; different → equals false) in tests/unit/entities/Note.test.ts
+- [x] T011 [P] Test Note.toString() returns correct display string ("C", "F#", "Bb") in tests/unit/entities/Note.test.ts
+- [x] T012 [P] Test Note.semitonesFromC() returns correct semitone distance for all 21 notes in tests/unit/entities/Note.test.ts
 
 ### Implementation for Note 🟢
 
-- [ ] T013 Implement Note Value Object (letter, accidental, readonly, Object.freeze, self-validating constructor, equals, toString, semitonesFromC) in src/harmonic-analysis/entities/Note.ts
+- [x] T013 Implement Note Value Object (letter, accidental, readonly, Object.freeze, self-validating constructor, equals, toString, semitonesFromC) in src/harmonic-analysis/entities/Note.ts
 
 ### Tests for PitchClass (TDD: write first, must FAIL) 🔴
 
-- [ ] T014 [P] Test PitchClass creation with valid values (0–11) in tests/unit/entities/PitchClass.test.ts
-- [ ] T015 [P] Test PitchClass rejects invalid values (negative, >11, non-integer) in tests/unit/entities/PitchClass.test.ts
-- [ ] T016 [P] Test PitchClass immutability and equality by value in tests/unit/entities/PitchClass.test.ts
-- [ ] T017 [P] Test Note.pitchClass() derives correct PitchClass for all 21 notes (C=0, C#=1, Db=1, ..., B=11) in tests/unit/entities/PitchClass.test.ts
+- [x] T014 [P] Test PitchClass creation with valid values (0–11) in tests/unit/entities/PitchClass.test.ts
+- [x] T015 [P] Test PitchClass rejects invalid values (negative, >11, non-integer) in tests/unit/entities/PitchClass.test.ts
+- [x] T016 [P] Test PitchClass immutability and equality by value in tests/unit/entities/PitchClass.test.ts
+- [x] T017 [P] Test Note.pitchClass() derives correct PitchClass for all 21 notes (C=0, C#=1, Db=1, ..., B=11) in tests/unit/entities/PitchClass.test.ts
 
 ### Implementation for PitchClass 🟢
 
-- [ ] T018 Implement PitchClass Value Object (value 0–11, readonly, Object.freeze, self-validating, equals) in src/harmonic-analysis/entities/PitchClass.ts
-- [ ] T019 Add pitchClass() method to Note that derives PitchClass in src/harmonic-analysis/entities/Note.ts
+- [x] T018 Implement PitchClass Value Object (value 0–11, readonly, Object.freeze, self-validating, equals) in src/harmonic-analysis/entities/PitchClass.ts
+- [x] T019 Add pitchClass() method to Note that derives PitchClass in src/harmonic-analysis/entities/Note.ts
 
 **Checkpoint**: Note and PitchClass fully tested and implemented. Foundation ready for Interval and Chord.
 
@@ -72,20 +72,20 @@
 
 ### Tests for Interval (TDD: write first, must FAIL) 🔴
 
-- [ ] T020 [P] Test Interval creation with valid quality+number combinations (P1, m2, M2, m3, M3, P4, d5, P5, A5, m6, M6, m7, M7, d7) in tests/unit/entities/Interval.test.ts
-- [ ] T021 [P] Test Interval rejects invalid quality+number combinations (e.g., "major 5th", "perfect 3rd") throwing InvalidIntervalError in tests/unit/entities/Interval.test.ts
-- [ ] T022 [P] Test Interval immutability and equality by value in tests/unit/entities/Interval.test.ts
-- [ ] T023 [P] Test Interval.semitones() returns correct semitone count for all valid intervals in tests/unit/entities/Interval.test.ts
-- [ ] T024 [P] Test Interval.toString() returns human-readable string ("perfect unison", "minor 3rd", "diminished 5th") in tests/unit/entities/Interval.test.ts
-- [ ] T025 Test Interval.apply(root) produces correct spelled note for major intervals from C (M3 from C → E, P5 from C → G, M7 from C → B) in tests/unit/entities/Interval.test.ts
-- [ ] T026 Test Interval.apply(root) produces correct spelled note for minor/diminished intervals (m3 from D → F, d5 from B → F, d7 from B → Ab NOT G#) in tests/unit/entities/Interval.test.ts
-- [ ] T027 Test Interval.apply(root) with sharped roots (M3 from F# → A#, m3 from F# → A, d5 from F# → C) in tests/unit/entities/Interval.test.ts
-- [ ] T028 Test Interval.apply(root) with flatted roots (m3 from Eb → Gb, P5 from Eb → Bb, M7 from Ab → G) in tests/unit/entities/Interval.test.ts
+- [x] T020 [P] Test Interval creation with valid quality+number combinations (P1, m2, M2, m3, M3, P4, d5, P5, A5, m6, M6, m7, M7, d7) in tests/unit/entities/Interval.test.ts
+- [x] T021 [P] Test Interval rejects invalid quality+number combinations (e.g., "major 5th", "perfect 3rd") throwing InvalidIntervalError in tests/unit/entities/Interval.test.ts
+- [x] T022 [P] Test Interval immutability and equality by value in tests/unit/entities/Interval.test.ts
+- [x] T023 [P] Test Interval.semitones() returns correct semitone count for all valid intervals in tests/unit/entities/Interval.test.ts
+- [x] T024 [P] Test Interval.toString() returns human-readable string ("perfect unison", "minor 3rd", "diminished 5th") in tests/unit/entities/Interval.test.ts
+- [x] T025 Test Interval.apply(root) produces correct spelled note for major intervals from C (M3 from C → E, P5 from C → G, M7 from C → B) in tests/unit/entities/Interval.test.ts
+- [x] T026 Test Interval.apply(root) produces correct spelled note for minor/diminished intervals (m3 from D → F, d5 from B → F, d7 from B → Ab NOT G#) in tests/unit/entities/Interval.test.ts
+- [x] T027 Test Interval.apply(root) with sharped roots (M3 from F# → A#, m3 from F# → A, d5 from F# → C) in tests/unit/entities/Interval.test.ts
+- [x] T028 Test Interval.apply(root) with flatted roots (m3 from Eb → Gb, P5 from Eb → Bb, M7 from Ab → G) in tests/unit/entities/Interval.test.ts
 
 ### Implementation for Interval 🟢
 
-- [ ] T029 Implement Interval Value Object (quality, number, readonly, Object.freeze, self-validating, equals, semitones, toString) in src/harmonic-analysis/entities/Interval.ts
-- [ ] T030 Implement Interval.apply(root: Note): Note — letter arithmetic + accidental adjustment for correct enharmonic spelling in src/harmonic-analysis/entities/Interval.ts
+- [x] T029 Implement Interval Value Object (quality, number, readonly, Object.freeze, self-validating, equals, semitones, toString) in src/harmonic-analysis/entities/Interval.ts
+- [x] T030 Implement Interval.apply(root: Note): Note — letter arithmetic + accidental adjustment for correct enharmonic spelling in src/harmonic-analysis/entities/Interval.ts
 
 **Checkpoint**: Interval fully tested including apply() with correct enharmonic spelling. Ready for Chord construction.
 
@@ -97,32 +97,32 @@
 
 ### Tests for ChordQuality (TDD: write first, must FAIL) 🔴
 
-- [ ] T031 [P] Test ChordQuality has exactly 9 valid values (major, minor, diminished, augmented, major-seventh, dominant-seventh, minor-seventh, half-diminished-seventh, diminished-seventh) in tests/unit/entities/ChordQuality.test.ts
-- [ ] T032 [P] Test interval template lookup returns correct intervals for each of the 9 qualities in tests/unit/entities/ChordQuality.test.ts
+- [x] T031 [P] Test ChordQuality has exactly 9 valid values (major, minor, diminished, augmented, major-seventh, dominant-seventh, minor-seventh, half-diminished-seventh, diminished-seventh) in tests/unit/entities/ChordQuality.test.ts
+- [x] T032 [P] Test interval template lookup returns correct intervals for each of the 9 qualities in tests/unit/entities/ChordQuality.test.ts
 
 ### Implementation for ChordQuality 🟢
 
-- [ ] T033 Implement ChordQuality type and CHORD_INTERVAL_TEMPLATES constant mapping each quality to its interval array in src/harmonic-analysis/entities/ChordQuality.ts
+- [x] T033 Implement ChordQuality type and CHORD_INTERVAL_TEMPLATES constant mapping each quality to its interval array in src/harmonic-analysis/entities/ChordQuality.ts
 
 ### Tests for Chord (TDD: write first, must FAIL) 🔴
 
-- [ ] T034 [P] Test Chord construction from root C + quality major → notes [C, E, G], intervals [P1, M3, P5] in tests/unit/entities/Chord.test.ts
-- [ ] T035 [P] Test Chord construction from root D + quality minor → notes [D, F, A], intervals [P1, m3, P5] in tests/unit/entities/Chord.test.ts
-- [ ] T036 [P] Test Chord construction from root B + quality diminished → notes [B, D, F], intervals [P1, m3, d5] in tests/unit/entities/Chord.test.ts
-- [ ] T037 [P] Test Chord construction from root C + quality augmented → notes [C, E, G#], intervals [P1, M3, A5] in tests/unit/entities/Chord.test.ts
-- [ ] T038 [P] Test Chord construction from root C + quality major-seventh → notes [C, E, G, B] in tests/unit/entities/Chord.test.ts
-- [ ] T039 [P] Test Chord construction from root G + quality dominant-seventh → notes [G, B, D, F] in tests/unit/entities/Chord.test.ts
-- [ ] T040 [P] Test Chord construction from root D + quality minor-seventh → notes [D, F, A, C] in tests/unit/entities/Chord.test.ts
-- [ ] T041 [P] Test Chord construction from root F# + quality half-diminished-seventh → notes [F#, A, C, E] in tests/unit/entities/Chord.test.ts
-- [ ] T042 [P] Test Chord construction from root B + quality diminished-seventh → notes [B, D, F, Ab] (NOT G#) in tests/unit/entities/Chord.test.ts
-- [ ] T043 [P] Test Chord with flatted roots: Eb minor-seventh → [Eb, Gb, Bb, Db], Ab major-seventh → [Ab, C, Eb, G] in tests/unit/entities/Chord.test.ts
-- [ ] T044 [P] Test Chord immutability (readonly root, notes array, intervals array; Object.freeze; mutation attempt throws) in tests/unit/entities/Chord.test.ts
-- [ ] T045 [P] Test Chord equality by value in tests/unit/entities/Chord.test.ts
+- [x] T034 [P] Test Chord construction from root C + quality major → notes [C, E, G], intervals [P1, M3, P5] in tests/unit/entities/Chord.test.ts
+- [x] T035 [P] Test Chord construction from root D + quality minor → notes [D, F, A], intervals [P1, m3, P5] in tests/unit/entities/Chord.test.ts
+- [x] T036 [P] Test Chord construction from root B + quality diminished → notes [B, D, F], intervals [P1, m3, d5] in tests/unit/entities/Chord.test.ts
+- [x] T037 [P] Test Chord construction from root C + quality augmented → notes [C, E, G#], intervals [P1, M3, A5] in tests/unit/entities/Chord.test.ts
+- [x] T038 [P] Test Chord construction from root C + quality major-seventh → notes [C, E, G, B] in tests/unit/entities/Chord.test.ts
+- [x] T039 [P] Test Chord construction from root G + quality dominant-seventh → notes [G, B, D, F] in tests/unit/entities/Chord.test.ts
+- [x] T040 [P] Test Chord construction from root D + quality minor-seventh → notes [D, F, A, C] in tests/unit/entities/Chord.test.ts
+- [x] T041 [P] Test Chord construction from root F# + quality half-diminished-seventh → notes [F#, A, C, E] in tests/unit/entities/Chord.test.ts
+- [x] T042 [P] Test Chord construction from root B + quality diminished-seventh → notes [B, D, F, Ab] (NOT G#) in tests/unit/entities/Chord.test.ts
+- [x] T043 [P] Test Chord with flatted roots: Eb minor-seventh → [Eb, Gb, Bb, Db], Ab major-seventh → [Ab, C, Eb, G] in tests/unit/entities/Chord.test.ts
+- [x] T044 [P] Test Chord immutability (readonly root, notes array, intervals array; Object.freeze; mutation attempt throws) in tests/unit/entities/Chord.test.ts
+- [x] T045 [P] Test Chord equality by value in tests/unit/entities/Chord.test.ts
 
 ### Implementation for Chord 🟢
 
-- [ ] T046 Implement Chord Value Object (root, notes, intervals, quality; constructed from root + quality using CHORD_INTERVAL_TEMPLATES; readonly, Object.freeze, equals) in src/harmonic-analysis/entities/Chord.ts
-- [ ] T047 Create barrel export in src/harmonic-analysis/entities/index.ts exporting Note, PitchClass, Interval, Chord, ChordQuality, and error types
+- [x] T046 Implement Chord Value Object (root, notes, intervals, quality; constructed from root + quality using CHORD_INTERVAL_TEMPLATES; readonly, Object.freeze, equals) in src/harmonic-analysis/entities/Chord.ts
+- [x] T047 Create barrel export in src/harmonic-analysis/entities/index.ts exporting Note, PitchClass, Interval, Chord, ChordQuality, and error types
 
 **Checkpoint**: All domain entities fully tested and implemented. Chord construction from root + quality produces correctly spelled notes. Ready for parser and user story phases.
 

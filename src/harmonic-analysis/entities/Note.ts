@@ -2,7 +2,7 @@ import { PitchClass } from './PitchClass';
 import { InvalidNoteError } from './errors';
 
 const VALID_LETTERS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'] as const;
-const VALID_ACCIDENTALS = ['', '#', 'b'] as const;
+const VALID_ACCIDENTALS = ['', '#', 'b', '##', 'bb'] as const;
 
 export type Letter = typeof VALID_LETTERS[number];
 export type Accidental = typeof VALID_ACCIDENTALS[number];
@@ -39,8 +39,10 @@ export class Note {
   semitonesFromC(): number {
     let base = LETTER_PITCH_CLASS[this.letter];
     if (this.accidental === '#') base += 1;
-    if (this.accidental === 'b') base -= 1;
-    return (base + 12) % 12;
+    else if (this.accidental === 'b') base -= 1;
+    else if (this.accidental === '##') base += 2;
+    else if (this.accidental === 'bb') base -= 2;
+    return ((base % 12) + 12) % 12;
   }
 
   pitchClass(): PitchClass {

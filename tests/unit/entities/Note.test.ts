@@ -6,7 +6,7 @@ import { PitchClass } from '../../../src/harmonic-analysis/entities/PitchClass';
 describe('Note', () => {
   it('T007: creates Note with valid inputs', () => {
     const letters = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-    const accidentals = ['', '#', 'b'];
+    const accidentals = ['', '#', 'b', '##', 'bb'];
     for (const l of letters) {
       for (const a of accidentals) {
         const note = new Note(l, a);
@@ -52,6 +52,10 @@ describe('Note', () => {
     expect(new Note('B').semitonesFromC()).toBe(11);
     expect(new Note('C', 'b').semitonesFromC()).toBe(11);
     expect(new Note('B', '#').semitonesFromC()).toBe(0);
+    // Double accidentals
+    expect(new Note('C', '##').semitonesFromC()).toBe(2);
+    expect(new Note('B', 'bb').semitonesFromC()).toBe(9);
+    expect(new Note('F', '##').semitonesFromC()).toBe(7);
   });
 
   it('T017: pitchClass() derives correct PitchClass', () => {

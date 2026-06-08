@@ -69,4 +69,18 @@ describe('Chord', () => {
     const c2 = new Chord(new Note('C'), 'major');
     expect(c1.equals(c2)).toBe(true);
   });
+
+  it('T046b: chords producing double accidentals', () => {
+    // Cdim7 → C, Eb, Gb, Bbb (double flat is musically correct)
+    const cdim7 = new Chord(new Note('C'), 'diminished-seventh');
+    expect(cdim7.notes.map(n => n.toString())).toEqual(['C', 'Eb', 'Gb', 'Bbb']);
+
+    // C#aug → C#, E#, G## (double sharp is musically correct)
+    const csAug = new Chord(new Note('C', '#'), 'augmented');
+    expect(csAug.notes.map(n => n.toString())).toEqual(['C#', 'E#', 'G##']);
+
+    // Baug → B, D#, F## (double sharp)
+    const bAug = new Chord(new Note('B'), 'augmented');
+    expect(bAug.notes.map(n => n.toString())).toEqual(['B', 'D#', 'F##']);
+  });
 });

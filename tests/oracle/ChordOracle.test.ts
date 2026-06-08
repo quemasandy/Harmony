@@ -49,8 +49,9 @@ describe('ChordOracle Tests', () => {
         throw err;
       }
 
-      // music21 spells flats with a '-' (e.g., 'E-'). We normalize to 'b' (e.g., 'Eb').
-      const oracleNotes = oracleData.notes.map((n: string) => n.replace('-', 'b'));
+      // music21 spells flats with '-' (e.g., 'E-' → 'Eb', 'B--' → 'Bbb').
+      // music21 does not use 'x' for double sharps; it uses '##'.
+      const oracleNotes = oracleData.notes.map((n: string) => n.replaceAll('-', 'b'));
 
       expect(myNotes).toEqual(oracleNotes);
     });

@@ -67,10 +67,12 @@ export class Interval {
     if (diff > 6) diff -= 12;
 
     let accidental = '';
-    if (diff === 1) accidental = '#';
+    if (diff === 0) accidental = '';
+    else if (diff === 1) accidental = '#';
     else if (diff === -1) accidental = 'b';
-    else if (diff === 0) accidental = '';
-    else throw new InvalidIntervalError(`Interval application resulted in double accidental: root ${root.toString()} + ${this.symbol} -> diff ${diff} for letter ${targetLetter}`);
+    else if (diff === 2) accidental = '##';
+    else if (diff === -2) accidental = 'bb';
+    else throw new InvalidIntervalError(`Interval application produced an unsupported accidental (diff=${diff}): root ${root.toString()} + ${this.symbol} for letter ${targetLetter}`);
 
     return new Note(targetLetter, accidental);
   }

@@ -69,10 +69,12 @@ describe('TritoneSubOracle Tests', () => {
       }
 
       const noteStr = tc.chordStr.replace('7', '');
-      const c = new Chord(Note.fromString(noteStr), 'dominant-seventh');
+      const getNote = (str: string) => new Note(str[0] as any, str.slice(1) as any);
+      
+      const c = new Chord(getNote(noteStr), 'dominant-seventh');
       const targetChordStr = tc.keyQuality === 'major' ? `${tc.keyStr}maj7` : `${tc.keyStr}m7`;
-      const targetC = new Chord(Note.fromString(tc.keyStr), tc.keyQuality === 'major' ? 'major-seventh' : 'minor-seventh');
-      const k = new Key(Note.fromString(tc.keyStr), tc.keyQuality as any);
+      const targetC = new Chord(getNote(tc.keyStr), tc.keyQuality === 'major' ? 'major-seventh' : 'minor-seventh');
+      const k = new Key(getNote(tc.keyStr), tc.keyQuality as any);
       
       const analysis = new Progression([c, targetC], k).analyze();
       const result = tritoneSubstitution(analysis, 0);

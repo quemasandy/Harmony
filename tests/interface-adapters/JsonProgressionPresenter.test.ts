@@ -71,6 +71,56 @@ describe('JsonProgressionPresenter', () => {
     expect(fmaj7.tensions.available).toBe(false);
     expect(fmaj7.tensions.reason).toBe('No explicit chord scale provided');
     expect(fmaj7.tensions.data).toBeUndefined();
+
+    // Verify contract stability: keys MUST be alphabetically sorted
+    expect(jsonString).toBe(`{
+  "data": {
+    "chords": [
+      {
+        "harmonicFunction": "ii7",
+        "isIIVI": true,
+        "symbol": "Dm7",
+        "tensions": {
+          "available": true,
+          "data": {
+            "availableTensions": [
+              "E",
+              "G",
+              "B"
+            ],
+            "avoidNotes": [
+              "F"
+            ]
+          }
+        },
+        "tritoneSubstitutions": {
+          "available": true,
+          "data": [
+            {
+              "explanation": "Tritone substitution of D7",
+              "substituteSymbol": "Ab7"
+            }
+          ]
+        }
+      },
+      {
+        "harmonicFunction": "IVmaj7",
+        "isIIVI": false,
+        "symbol": "Fmaj7",
+        "tensions": {
+          "available": false,
+          "reason": "No explicit chord scale provided"
+        },
+        "tritoneSubstitutions": {
+          "available": false,
+          "reason": "Chord quality does not support tritone substitution"
+        }
+      }
+    ],
+    "tonalCenter": "C"
+  },
+  "success": true
+}`);
   });
 
   it('should format an error result deterministically', () => {

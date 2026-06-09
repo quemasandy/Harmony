@@ -1,11 +1,28 @@
 import { ProgressionAnalysisResult } from '../use-cases/dtos/ProgressionResult';
 
+function stableStringify(value: any, space: number = 2): string {
+  function sortKeys(obj: any): any {
+    if (obj === null || typeof obj !== 'object') {
+      return obj;
+    }
+    if (Array.isArray(obj)) {
+      return obj.map(sortKeys);
+    }
+    const sortedObj: Record<string, any> = {};
+    Object.keys(obj)
+      .sort()
+      .forEach(key => {
+        if (obj[key] !== undefined) {
+          sortedObj[key] = sortKeys(obj[key]);
+        }
+      });
+    return sortedObj;
+  }
+  return JSON.stringify(sortKeys(value), null, space);
+}
+
 export class JsonProgressionPresenter {
   present(result: ProgressionAnalysisResult): string {
-    // We want deterministic formatting. JSON.stringify guarantees deterministic
-    // ordering of array elements, but not necessarily object keys.
-    // Since our DTOs are plain objects and we construct them deterministically 
-    // in the analyzer, JSON.stringify with a spaces argument is stable enough.
-    return JSON.stringify(result, null, 2);
+    return stableStringify(result, 2);
   }
 }

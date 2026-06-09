@@ -46,3 +46,10 @@ export class InvalidRomanNumeralError extends HarmonyError {
     this.name = 'InvalidRomanNumeralError';
   }
 }
+
+export class InvalidSubstitutionError extends HarmonyError {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidSubstitutionError';
+  }
+}

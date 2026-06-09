@@ -1,5 +1,5 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan
-at specs/003-chord-scale-tensions/plan.md
+at specs/004-chord-substitutions/plan.md
 <!-- SPECKIT END -->

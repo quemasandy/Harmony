@@ -24,7 +24,7 @@ describe('TritoneSubstitution', () => {
       }
     });
 
-    it('T006: Bb7 (V7 in Eb Major) -> E7 substitute', () => {
+    it('T006: Bb7 (V7 in Eb Major) -> Fb7 substitute', () => {
       const bb7 = new Chord(new Note('B', 'b'), 'dominant-seventh');
       const ebmaj7 = new Chord(new Note('E', 'b'), 'major-seventh');
       const key = new Key(new Note('E', 'b'), 'major');
@@ -34,8 +34,8 @@ describe('TritoneSubstitution', () => {
 
       expect(result.applicable).toBe(true);
       if (result.applicable) {
-        expect(result.substitution.substituteChord.root.letter).toBe('E');
-        expect(result.substitution.substituteChord.root.accidental).toBe('');
+        expect(result.substitution.substituteChord.root.letter).toBe('F');
+        expect(result.substitution.substituteChord.root.accidental).toBe('b');
       }
     });
 

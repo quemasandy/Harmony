@@ -99,20 +99,11 @@ export function tritoneSubstitution(analysis: HarmonicAnalysis, chordIndex: numb
   }
 
   // It is a resolving V7! Calculate substitute.
-  const d5Interval = new Interval('d5');
-  const a4Interval = new Interval('A4');
-  
-  const rootD5 = d5Interval.apply(originalChord.root);
-  const rootA4 = a4Interval.apply(originalChord.root);
-  
-  // Prefer the spelling with fewer accidentals. If tied, prefer flats (common for downward resolution).
-  const penalty = (note: Note) => note.accidental.length;
-  let substituteRoot = rootD5;
-  if (penalty(rootA4) < penalty(rootD5)) {
-    substituteRoot = rootA4;
-  } else if (penalty(rootA4) === penalty(rootD5) && rootA4.accidental.includes('b') && !rootD5.accidental.includes('b')) {
-    substituteRoot = rootA4;
-  }
+  // The substitute root should be spelled as the functional flat-second (bII) 
+  // of the resolution target, which is a minor second above the target root.
+  const targetRoot = analysis.chords[chordIndex + 1]!.root;
+  const m2Interval = new Interval('m2');
+  const substituteRoot = m2Interval.apply(targetRoot);
 
   const substituteChord = new Chord(substituteRoot, 'dominant-seventh');
 

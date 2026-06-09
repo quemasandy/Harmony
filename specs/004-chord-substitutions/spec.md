@@ -88,6 +88,7 @@ As a music theory student, I want the tritone substitution explanation to correc
 - **FR-010**: The feature MUST compose on the harmonic-function capability built in F2 (Chord Progression Harmonic Analysis). The determination of whether a dominant chord resolves MUST use functional context, not just chord quality alone. A chord is considered "resolving" only when it is analyzed as V7 and is followed by I (major) or i (minor) — i.e., the dominant resolves down a fifth to the tonic. Secondary dominants, deceptive cadences, and other resolutions do not qualify.
 - **FR-011**: All domain entities introduced by this feature MUST be pure domain objects with no framework dependencies.
 - **FR-012**: All invalid or non-applicable inputs MUST fail fast or report explicitly on construction or computation.
+- **FR-013**: The root of the substitute chord MUST be spelled as the functional flat-second (bII) of the resolution target's root (calculated as a minor second above the target root), avoiding heuristic-based spelling like minimum accidentals.
 
 ### Key Entities
 

@@ -10,6 +10,7 @@ export type ChordAnalysisResult =
   | { diatonic: false };
 
 export interface HarmonicAnalysis {
+  readonly key: Key;
   readonly chords: readonly Chord[];
   readonly chordAnalysis: readonly ChordAnalysisResult[];
   readonly iiVIMajorPatterns: readonly { startIndex: number }[];
@@ -58,6 +59,7 @@ export class Progression {
     }
 
     return Object.freeze({
+      key: this.key,
       chords: this.chords,
       chordAnalysis: Object.freeze(chordAnalysis),
       iiVIMajorPatterns: Object.freeze(iiVIMajorPatterns),

@@ -5,7 +5,7 @@ export type IntervalQuality = 'perfect' | 'major' | 'minor' | 'diminished' | 'au
 export type IntervalNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 const VALID_INTERVALS = [
-  'P1', 'm2', 'M2', 'm3', 'M3', 'P4', 'd5', 'P5', 'A5', 'm6', 'M6', 'm7', 'M7', 'd7'
+  'P1', 'm2', 'M2', 'm3', 'M3', 'P4', 'A4', 'd5', 'P5', 'A5', 'm6', 'M6', 'm7', 'M7', 'd7'
 ] as const;
 
 export class Interval {
@@ -41,7 +41,7 @@ export class Interval {
   semitones(): number {
     const semitoneMap: Record<string, number> = {
       'P1': 0, 'm2': 1, 'M2': 2, 'm3': 3, 'M3': 4,
-      'P4': 5, 'd5': 6, 'P5': 7, 'A5': 8,
+      'P4': 5, 'A4': 6, 'd5': 6, 'P5': 7, 'A5': 8,
       'm6': 8, 'M6': 9, 'm7': 10, 'M7': 11, 'd7': 9
     };
     return semitoneMap[this.symbol]!;

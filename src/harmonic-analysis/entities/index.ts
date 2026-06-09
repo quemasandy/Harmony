@@ -4,3 +4,8 @@ export * from './Note';
 export * from './Interval';
 export * from './ChordQuality';
 export * from './Chord';
+export * from './TritoneSubstitution';
+export * from './Key';
+export * from './Progression';
+export * from './Tensions';
+export * from './RomanNumeral';

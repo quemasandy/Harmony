@@ -77,6 +77,13 @@ function App() {
         {analysisResult && (
           <AnalysisView tonalCenter={analysisResult.tonalCenter} chords={analysisResult.chords} />
         )}
+        
+        <div id="debug-dump" style={{ display: 'block', background: '#000', color: '#0f0', padding: '1rem' }}>
+          DEBUG: 
+          isSubmitting={String(isSubmitting)} | 
+          globalError={String(globalError)} | 
+          hasResult={String(!!analysisResult)}
+        </div>
       </main>
 
       <footer style={{ textAlign: 'center', marginTop: 'auto', padding: '2rem', color: 'var(--text-secondary)' }}>

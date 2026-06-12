@@ -115,7 +115,7 @@ export function ProgressionForm({ onSubmit, isSubmitting, globalError, fieldErro
         </div>
 
         <div style={{ marginTop: '2rem', textAlign: 'right' }}>
-          <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+          <button id="submit-btn" type="button" className="btn btn-primary" disabled={isSubmitting} onClick={handleSubmit}>
             {isSubmitting ? 'Analyzing...' : 'Analyze Progression'}
           </button>
         </div>

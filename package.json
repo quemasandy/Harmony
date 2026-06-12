@@ -4,6 +4,8 @@
   "description": "Harmonic Analysis Engine",
   "main": "src/harmonic-analysis/index.ts",
   "scripts": {
+    "start": "npx ts-node src/server.ts",
+    "dev": "npx ts-node src/server.ts",
     "test": "vitest run",
     "test:unit": "vitest run tests/unit",
     "test:oracle": "vitest run tests/oracle",
